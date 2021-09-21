@@ -1,0 +1,65 @@
+<div class="own-body">
+    <!--<h1 class="logo">TASHILAT</h1>-->
+    <div class="bg-image">
+        <img
+            src="https://www.ouestfrance-emploi.com/sites/default/files/styles/610-largeur/public/accueil-banque_1.jpg?itok=IuKMKxPt">
+    </div>
+    <div class="svg_container">
+        <svg viewBox="0 0 200 400">
+            <path d="M60.94,-21.20 C-37.81,70.55 165.34,118.91 12.41,176.14 L0.00,150.00 L-37.81,-15.28 Z"
+                style="stroke: none; fill:#F08080;"></path>
+        </svg>
+        <svg viewBox="0 0 200 200" preserveAspectRatio="xMinYMin meet">
+            <path d="M57.56,-20.22 C-37.81,70.55 97.63,118.91 12.41,176.14 L0.00,150.00 L-37.81,-15.28 Z"
+                style="stroke: none; fill:#E9967A;"></path>
+        </svg>
+    </div>
+    <form class="login" #f="ngForm" (ngSubmit)="onSubmit(f)">
+
+        <fieldset>
+
+            <legend class="legend">LOGIN</legend>
+
+            <div class="input">
+                <input 
+                    type="text" 
+                    placeholder="Username"
+                    ngModel
+                    name="username"
+                    required
+                    #usernameCtrl="ngModel" />
+                <span><i class="fa fa-user"></i></span>
+            </div>
+
+            <div class="input">
+                <input 
+                    type="password" 
+                    placeholder="Password"
+                    ngModel
+                    name="password"
+                    minlength="4"
+                    #passwordCtrl="ngModel"
+                    required />
+                <span><i class="fa fa-lock"></i></span>
+            </div>
+
+            <button type="submit" class="submit"><i class="fa fa-long-arrow-right"></i></button>
+
+        </fieldset>
+
+        <div class="feedback">
+            login successful <br />
+            redirecting...
+        </div>
+        <div class="error-feedback">
+            invalid credentials <br />
+            try again...
+        </div>
+    </form>
+    <p class="signature">
+        Tasshilat Services © 2020-2021
+    </p>
+</div>
+
+
+<script src="../../assets/js/login.js"></script>

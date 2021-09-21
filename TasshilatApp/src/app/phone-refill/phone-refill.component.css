@@ -1,0 +1,37 @@
+.own-body {
+    position: absolute;
+    padding: 1.2em;
+    width: 100%;
+    min-height: 100%;
+    /* background: linear-gradient(to top left, #45a9d8, #8b48d5); */
+    background-color: #673AB7;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.board-back-button {
+    position: absolute;
+    top: .4em;
+    left: .7em;
+    cursor: pointer;
+}
+
+.board-back-button:hover {
+    position: absolute;
+    top: .4em;
+    left: .7em;
+    cursor: pointer;
+    background-color: darkorchid;
+    
+}
+
+.board-back-button img {
+    max-width: 80px;
+}
+
+.signature {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: #CCD1D1;
+    margin: .5em;
+}

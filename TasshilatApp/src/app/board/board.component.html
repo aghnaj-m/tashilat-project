@@ -1,0 +1,25 @@
+<div class="own-body">
+    <div class="grid">
+        <div *ngFor="let card of cards" class="container">
+            <a routerLink="{{ card[2] }}" style="text-decoration: none;">
+                <svg viewBox="0 0 200 500" preserveAspectRatio="xMinYMin meet">
+                    <path d="M60.94,-21.20 C-37.81,70.55 165.34,118.91 12.41,176.14 L0.00,150.00 L-37.81,-15.28 Z"
+                        style="stroke: none; fill:#F08080;"></path>
+                </svg>
+                <svg viewBox="0 0 200 200" preserveAspectRatio="xMinYMin meet">
+                    <path d="M57.56,-20.22 C-37.81,70.55 97.63,118.91 12.41,176.14 L0.00,150.00 L-37.81,-15.28 Z"
+                        style="stroke: none; fill:#E9967A;"></path>
+                </svg>
+                <div class="content">
+                    <h1 class="title">{{ card[0] }}</h1>
+                    <img src="{{ card[1] }}" alt="">
+                    <button>ACCESS</button>
+                </div>
+
+            </a>
+        </div>
+    </div>
+    <p class="signature">
+        Tasshilat Services © - Copyright 2020-2021
+    </p>
+</div>

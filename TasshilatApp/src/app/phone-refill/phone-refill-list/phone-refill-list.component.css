@@ -1,0 +1,36 @@
+#heading {
+    /* text-transform: uppercase; */
+    color: #673AB7;
+    font-weight: normal
+}
+
+.btn-new {
+    margin-left: .5em;
+    float: left;
+    color: #3E005D;
+    border: solid 1px #3E005D;
+}
+
+table {
+    width: 100%;
+}
+
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.active-purple-2 input.form-control[type=text]:focus:not([readonly]) {
+    border-bottom: 1px solid #ce93d8;
+    box-shadow: 0 1px 0 0 #ce93d8;
+}
+
+.active-purple input.form-control[type=text] {
+    border-bottom: 1px solid #ce93d8;
+    box-shadow: 0 1px 0 0 #ce93d8;
+}
+
+mat-paginator{
+    background-color: #ce93d8;
+}

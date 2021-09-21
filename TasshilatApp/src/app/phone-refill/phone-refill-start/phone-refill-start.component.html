@@ -1,0 +1,159 @@
+<div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                <h2 id="heading">Phone Refill</h2>
+                <p>Fill all form field to go to next step</p>
+                <form id="msform" #f="ngForm" (ngSubmit)="onSubmit(f)">
+                    <!-- progressbar -->
+                    <ul id="progressbar">
+                        <li class="active" id="account"><strong>Operator</strong></li>
+                        <li id="personal"><strong>Personal</strong></li>
+                        <li id="payment"><strong>Offer</strong></li>
+                        <li id="confirm"><strong>Finish</strong></li>
+                    </ul>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                    </div> <br> <!-- fieldsets -->
+                    <fieldset>
+                        <div class="form-card">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="fs-title">Operator Informations:</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps">Step 1 - 4</h2>
+                                </div>
+                            </div>
+                            <!-- Operator HTML -->
+                            <div class="operators-container">
+                                <a class="list-group-item clearfix" style="cursor: pointer">
+                                    <div class="card">
+                                        <img src="https://www.cihnet.co.ma/Portals/_default/Skins/CIH/images/newSkinImgs/IamLogo.png"
+                                            class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <p class="list-group-item-text">Maroc Telecom</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="list-group-item clearfix" style="cursor: pointer">
+                                    <div class="card">
+                                        <img src="https://www.cihnet.co.ma/Portals/_default/Skins/CIH/images/newSkinImgs/orange.png"
+                                            class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <p class="list-group-item-text">ORANGE</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="list-group-item clearfix" style="cursor: pointer">
+                                    <div class="card">
+                                        <img src="https://www.cihnet.co.ma/Portals/_default/Skins/CIH/images/newSkinImgs/InwiLogo.png"
+                                            class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <p class="list-group-item-text">INWI</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                        <input type="button" name="next" class="next action-button" value="Next" />
+                    </fieldset>
+                    <fieldset>
+                        <div class="form-card">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="fs-title">Personal Information:</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps">Step 2 - 4</h2>
+                                </div>
+                            </div>
+                            <label class="fieldlabels">Phone Number: *</label>
+                            <p *ngIf="!phoneNumberCtrl.valid && phoneNumberCtrl.touched">
+                                <span class="text-danger">Must contain 10 numbers</span>
+                            </p>
+                            <input type="text" name="phoneNumber" ngModel #phoneNumberCtrl="ngModel"
+                                placeholder="Ex: 06xxxxxxxx" minlength="10" maxlength="10" required />
+                            <label class="fieldlabels">Amount: *</label>
+                            <p *ngIf="!amountCrl.valid && amountCrl.touched">
+                                <span class="text-danger">required</span>
+                            </p>
+                            <select name="amount" class="form-control" ngModel #amountCrl="ngModel" required>
+                                <option value="10" selected>10</option>
+                                <option value="20">20</option>
+                                <option value="25">25</option>
+                                <option value="30">30</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                                <option value="200">200</option>
+                                <option value="300">300</option>
+                            </select>
+                        </div>
+                        <input type="button" name="next" class="next action-button" value="Next" />
+                        <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                    </fieldset>
+                    <fieldset>
+                        <div class="form-card">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="fs-title">Offer Information:</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps">Step 3 - 4</h2>
+                                </div>
+                            </div>
+                            <!-- Offer Code -->
+                            <select name="offer" class="form-control" ngModel #offerCtrl="ngModel" required>
+                                <option value="MINUTES" selected="true">MINUTES (*2)</option>
+                                <option value="INTERNET">INTERNET (*3)</option>
+                                <option value="SMS">SMS (*4)</option>
+                                <option value="INTERNATIONAL">INTERNATIONAL (*5)</option>
+                            </select>
+                        </div>
+                        <input type="submit" name="next" class="next action-button" value="Submit" />
+                        <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                    </fieldset>
+                    <fieldset>
+                        <div class="form-card">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="fs-title">Finish:</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps">Step 4 - 4</h2>
+                                </div>
+                            </div> <br><br>
+                            <div *ngIf="isLoading" class="row justify-content-center">
+                                <div class="spinner-grow text-secondary m-3" style="width:4em; height: 4em;"
+                                    role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+                            <div *ngIf="!isLoading && !error">
+                                <h2 class="purple-text text-center"><strong>SUCCESS !</strong></h2> <br>
+                                <div class="row justify-content-center">
+                                    <div class="col-3">
+                                        <img src="https://i.imgur.com/GwStPmg.png" class="fit-image">
+                                    </div>
+                                </div> <br><br>
+                                <div class="row justify-content-center">
+                                    <div class="col-7 text-center">
+                                        <h5 class="purple-text text-center">You Have Successfully Refilled</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="error && !isLoading" class="row justify-content-center m-3">
+                                <div class="row justify-content-center">
+                                    <div class="col-3">
+                                        <img src="https://www.pngitem.com/pimgs/m/119-1190874_warning-icon-png-png-download-icon-transparent-png.png"
+                                            class="fit-image">
+                                    </div>
+                                </div> <br><br>
+                                <p class="alert bg-danger text-white">
+                                    Please make sure you filled up all required (*) information !
+                                </p>
+                            </div>
+                        </div>
+                        <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                    </fieldset>
+                </form>
+            </div>

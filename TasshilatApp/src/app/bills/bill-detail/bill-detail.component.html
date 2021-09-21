@@ -1,0 +1,100 @@
+<div id="page-wrap">
+
+    <textarea id="header" readonly>INVOICE</textarea>
+
+    <div id="identity">
+
+        <textarea id="address" readonly>
+				N°Client	:			{{ bill.client_number }}
+
+				N°Contrat	:			{{ bill.contract_number }}
+
+				N°Facture	:			{{ bill.id }}
+
+				Date		:			{{ bill.date }}
+
+				type		:			{{ bill.type | titlecase }} bill
+			</textarea>
+
+        <div id="logo">
+            <img *ngIf="bill.type == 'water'" id="image" src='../../../assets/img/waterLogo.png' alt="logo" />
+            <img *ngIf="bill.type == 'electricity'" id="image" src='../../../assets/img/electricity.png' alt="logo" />
+        </div>
+
+    </div>
+
+    <div style="clear:both"></div>
+
+    <table id="items">
+
+        <tr>
+            <th>N°Contrat</th>
+            <th>Description</th>
+            <th>Deadline</th>
+            <th>consommation</th>
+            <th>Price</th>
+        </tr>
+
+        <tr class="item-row">
+            <td class="item-name">
+                <div class="delete-wpr"><textarea readonly>{{ bill.contract_number }}</textarea></div>
+            </td>
+
+            <td class="description">
+                <textarea readonly>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do  quis nostrud exercitation ullamco.</textarea>
+            </td>
+            <td><textarea class="cost" readonly class="text-danger">{{ bill.deadline }}</textarea></td>
+            <td><textarea class="qty" readonly>3189 {{ bill.type == 'water' ? 'm3' : 'KW/h'}}</textarea></td>
+            <td><span class="price">{{ bill.amount }}</span></td>
+        </tr>
+
+        <tr id="hiderow">
+            <td colspan="5"><a id="addrow" href="javascript:;" title="Add a row"></a></td>
+        </tr>
+
+
+        <tr>
+
+            <td colspan="2" class="blank"></td>
+            <td colspan="2" class="total-line">Total</td>
+            <td class="total-value">
+                <div id="total">{{ bill.amount }} dh</div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="blank">
+                <div *ngIf="isLoading" class="row justify-content-center">
+                    <div class="spinner-grow text-success m-3" style="width:4em; height: 4em;"
+                        role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+                <img *ngIf="bill.paid" class="justify-content-center" src="../../../assets/img/paid.png" />
+
+            </td>
+            <td colspan="2" class="total-line" >Tva</td>
+
+            <td class="total-value"><textarea id="paid" readonly>0.00 dh</textarea></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="blank"> </td>
+            <td colspan="2" class="total-line balance">Balance Due</td>
+            <td class="total-value balance">
+                <div class="due">{{ bill.amount }} dh</div>
+            </td>
+        </tr>
+        <tr *ngIf='!bill.paid'>
+            <td colspan="2" class="blank"> </td>
+            <td colspan="3">
+                <button class="btn btn-success btn-lg btn-block" (click)="onPayBill()">Pay for it</button>
+            </td>
+        </tr>
+
+    </table>
+
+    <div id="terms">
+        <h5>Terms</h5>
+        <textarea readonly>NET 30 Days. Finance Charge of 1.5% will be made on unpaid balances after 30 days.</textarea>
+    </div>
+
+</div>

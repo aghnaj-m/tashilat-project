@@ -1,0 +1,70 @@
+<div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+    <h2 id="heading">Money Transfers List</h2>
+    <p>use this list to view all money transfers</p>
+    <div>
+        <button type="button" class="btn btn-new" (click)="onAddTransfer()">
+            <i class="fa fa-plus"></i>
+            New Transfer
+        </button>
+    </div>
+    <hr>
+    <div>
+        <mat-form-field>
+            <div class="form-inline d-flex justify-content-center md-form form-sm active-purple active-purple-2 mt-2">
+                <i class="fa fa-search fa-2x" aria-hidden="true"></i>
+                <mat-label></mat-label>
+                <input class="form-control 
+                        form-control-sm ml-3 w-75" type="text" matInput #input (keyup)="applyFilter($event)"
+                    placeholder="Search" aria-label="Search">
+            </div>
+        </mat-form-field><br><br>
+
+        <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+
+            <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+                <th mat-header-cell *matHeaderCellDef class="text-center"> {{column == 'id' ? 'Secret Code' :  column | titlecase}} </th>
+                <td [ngClass]="{'text-success': column == 'state' && element[column] == 'FINISHED', 'text-warning': column == 'state' && element[column] == 'IN HOLD'}"
+                    mat-cell *matCellDef="let element"> {{ column == 'amount' ? element[column]+' dh' : element[column] }}
+                </td>
+            </ng-container>
+
+            <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+            <ng-container matColumnDef="expandedDetail">
+                <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+                    <div class="example-element-detail" *ngIf="element['state'] == 'IN HOLD'"
+                        [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                        <!-- <app-bill-detail [bill]="element"></app-bill-detail> -->
+                        <div class="col-12 px-0 pt-4 pb-0 mt-3 mb-3">
+                            <h2 id="heading">Money Transfer</h2>
+                            <p>Confirming receive...</p>
+                            <div *ngIf="element['state'] == 'IN HOLD'">
+                                <!-- progressbar -->
+                                <ul id="progressbar" *ngIf="!isLoading">
+                                    <li class="active" id="account"><strong>Send</strong></li>
+                                    <li class="active" id="payment"><strong>Hold</strong></li>
+                                    <li id="confirm" (click)="confirmReceive(element['id'])"><strong>Receive</strong>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div *ngIf="isLoading" class="row justify-content-center">
+                                <div class="spinner-grow text-success m-3" style="width:4em; height: 4em;"
+                                    role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+                            <!-- <img *ngIf="element['state'] == 'FINISHED'" class="justify-content-center" src="../../../assets/img/approved.png" /> -->
+                        </div>
+                    </div>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row"
+                [class.example-expanded-row]="expandedElement === element"
+                (click)="expandedElement = expandedElement === element ? null : element">
+            </tr>
+            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+        </table>
+        <mat-paginator class="mt-4" [pageSizeOptions]="[5]" showFirstLastButtons></mat-paginator>
+    </div>
+</div>
