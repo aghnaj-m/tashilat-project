@@ -14,6 +14,11 @@ this application aims to approach consumer payment services, it mainly includes 
 <li>JWT</li>
 <li>MySQL database</li>
 
+# ⚠️ Disclaimer
+
+<li>This repository is made public only as a material proof to link to from my resume</li>
+<li>This repository does not represent my current skills nor it reflects the code quality of the projects that I work on currently</li>
+
 # 📷 Interfaces
 
 ![Screen Shot 2021-09-22 at 00 12 20](https://user-images.githubusercontent.com/61889011/134260357-aa07f388-527f-481c-b5bb-83d52e459c32.jpg)
